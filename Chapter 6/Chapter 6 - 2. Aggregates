@@ -1,0 +1,148 @@
+
+
+Aggregates
+
+Minimalist design of associations helps simplify traversal and limit the explosion of relationships
+somewhat, but most business domains are so interconnected that we still end up tracing long,
+deep paths through object references. In a way, this tangle reflects the realities of the world,
+which seldom obliges us with sharp boundaries.
+
+The problem is acute in a system with concurrent access to the same objects by multiple clients.
+With many users consulting and updating different objects in the system, we have to prevent
+simultaneous changes to interdependent objects. Getting the scope wrong has serious
+consequences
+
+
+The problems
+
+It is difficult to guarantee the consistency of changes to objects in a model with
+complex associations. Invariants need to be maintained that apply to closely related groups of objects, 
+not just discrete objects. Yet cautious locking schemes cause multiple users to interfere pointlessly 
+with each other and make a system unusable.
+
+How do we know where an object made up of other objects begins and ends? In
+any system with persistent storage of data, there must be a scope for a transaction that changes
+data, and a way of maintaining the consistency of the data (that is, maintaining its invariants).
+Databases allow various locking schemes, and tests can be programmed. But these ad hoc
+solutions divert attention away from the model, and soon you are back to hacking and hoping.
+
+The solution
+
+In fact, finding a balanced solution to these kinds of problems calls for deeper understanding of the
+domain, this time extending to factors such as the frequency of change between the instances of
+certain classes. We need to find a model that leaves high-contention points looser and strict
+invariants tighter.
+
+Although this problem surfaces as technical difficulties in database transactions, it is rooted in the
+model—in its lack of defined boundaries. A solution driven from the model will make the model
+easier to understand and make the design easier to communicate. As the model is revised, it will
+guide our changes to the implementation.
+
+
+Aggregate
+
+An AGGREGATE is a cluster of associated objects that we treat as a unit for the purpose of data changes. Each
+AGGREGATE has a root and a boundary. The boundary defines what is inside the AGGREGATE . The
+root is a single, specific ENTITY contained in the AGGREGATE
+
+The root is the only member of the AGGREGATE that outside objects are allowed to hold references to, 
+although objects within the boundary may hold references to each other. ENTITIES other than the root
+have local identity, but that identity needs to be distinguishable only within the AGGREGATE , 
+because no outside object can ever see it out of the context of the root ENTITY.
+
+    An example:
+
+A model of a car might be used in software for an auto repair shop. The car is an ENTITY with
+global identity: we want to distinguish that car from all other cars in the world, even very similar
+ones. We can use the vehicle identification number for this, a unique identifier assigned to each
+new car. We might want to track the rotation history of the tires through the four wheel positions.
+We might want to know the mileage and tread wear of each tire. To know which tire is which, the
+tires must be identified ENTITIES also. But it is very unlikely that we care about the identity of
+those tires outside of the context of that particular car. If we replace the tires and send the old
+ones to a recycling plant, either our software will no longer track them at all, or they will become
+anonymous members of a heap of tires. No one will care about their rotation histories. More to the
+point, even while they are attached to the car, no one will try to query the system to find a
+particular tire and then see which car it is on. They will query the database to find a car and then
+ask it for a TRANSIENT REFERENCE to the tires. Therefore, the car is the root ENTITY of the AGGREGATE
+whose boundary encloses the tires also. On the other hand, engine blocks have serial numbers
+engraved on them and are sometimes tracked independently of the car. In some applications, the
+engine might be the root of its own AGGREGATE.
+
+    Case study example at 6.2.png
+
+Invariants, which are CONSISTENCY RULES that must be maintained whenever data changes, will
+involve relationships between members of the AGGREGATE . Any rule that spans AGGREGATES will not
+be expected to be up-to-date at all times. Through event processing, batch processing, or other
+update mechanisms, other dependencies can be resolved within some specified time. But the
+invariants applied within an AGGREGATE will be enforced with the completion of each transaction
+
+
+Rules 
+
+    -> The root ENTITY has global identity and is ultimately responsible for checking invariants.
+
+    -> Nothing outside the AGGREGATE boundary can hold a reference to anything inside, except to
+    the root ENTITY . The root ENTITY can hand references to the internal ENTITIES to other objects,
+    but those objects can use them only transiently, and they may not hold on to the reference.
+    The root may hand a copy of a VALUE OBJECT to another object, and it doesn't matter what happens to it, 
+    because it's just a VALUE and no longer will have any association with the AGGREGATE.    
+
+    -> As a corollary to the previous rule, only AGGREGATE roots can be obtained directly with
+    database queries. All other objects must be found by traversal of associations.
+
+    -> The root ENTITY has global identity and is ultimately responsible for checking invariants
+
+    -> Root ENTITIES have global identity. ENTITIES inside the boundary have local identity, unique
+    only within the AGGREGATE
+
+    -> Objects within the AGGREGATE can hold references to other AGGREGATE roots
+
+    -> A delete operation must remove everything within the AGGREGATE boundary at once. (With
+    garbage collection, this is easy. Because there are no outside references to anything but the
+    root, delete the root and everything else will be collected)
+
+    -> When a change to any object within the AGGREGATE boundary is committed, all invariants of
+    the whole AGGREGATE must be satisfied (they should all be consistent)
+    
+    -> Aggregate are composed of value objects and entities (take a close look at the image 6.3).
+    The invariants are Rules kept as side notes
+
+Example
+
+The example is drawn in the picture 6.4. Take a close look at the invariant.
+
+The existing implementation has three interrelated problems:
+
+    1. Invariant enforcement. When a new line item is added, the PO checks the total and marks
+    ITSELF invalid if an item pushes it over the limit. As we'll see, this is not adequate protection.
+
+    2. Change management. When the PO is deleted or archived, the line items are taken along,
+    but the model gives no guidance on where to stop following the relationships. There is also
+    confusion about the impact of changing the part price at different times.
+
+    3. Sharing the database. Multiple users are creating contention problems in the database.
+
+On this model, users may
+
+    Change the price of parts
+    Get into the same product order
+
+Each case must be handled by a locking system. This locking system may cuase a deadlock if handeld incorrectly 
+(further details at page 125)
+
+The solution involves:
+
+    1. Parts are used in many POs (high contention).
+    2. There are fewer changes to parts than there are to POs.
+    3. Changes to part prices do not necessarily propagate to existing POs. It depends on the time of a 
+    price change relative to the status of the PO.
+
+The final aggregate structure is at 6.11 (note that 'price' is copied on each line item)
+
+An implementation consistent with this model would guarantee the invariant relating PO and its
+items, while changes to the price of a part would not have to immediately affect the items that
+reference it. 
+
+By making the dependency of line items on parts looser, we avoid contention and reflect 
+the realities of the business better. 
+

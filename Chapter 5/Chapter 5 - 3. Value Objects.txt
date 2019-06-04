@@ -1,0 +1,89 @@
+
+Value Objects
+
+
+Many objects have no conceptual identity. These objects describe some characteristic of a thing.
+
+Some framework assign a unique id to every object. This may cause performance optimizations, and
+extra analytical effort.  taking on artificial identities is misleading. It muddles the model,
+forcing all objects into the same mold
+
+    Tracking the identity of ENTITIES is essential, but attaching identity to other objects can hurt
+    system performance, add analytical work, and muddle the model by making all objects look the same
+
+    However, if we think of this category of object as just the absence of identity, we
+    haven't added much to our toolbox or vocabulary. In fact, these objects have characteristics
+    of their own and their own significance to the model. These are the objects that describe things.
+
+
+Formal definition of value objects:
+
+    An object that represents a descriptive aspect of the domain with no conceptual identity is called
+    a VALUE OBJECT. VALUE OBJECTS are instantiated to represent elements of the design that we care 
+    about only for what they are, not who or which they are
+
+
+Value objects characteristics:
+
+     - VALUE OBJECTS can be made up of other VALUE OBJECTS
+     - VALUE OBJECTS can reference ENTITIES
+     - VALUE OBJECTS are used as attributes of ENTITIES (And other values):     
+     - VALUE OBJECTS are often passed as parameters in messages between objects. They are frequently
+       transient, created for an operation and then discarded.0
+
+When you care only about the attributes of an element of the model, classify it as a VALUE OBJECT.
+Make it express the meaning of the attributes it conveys and give it related functionality.
+Treat the VALUE OBJECT as immutable. Don't give it any identity and avoid the design complexities
+necessary to maintain ENTITIES.
+
+The attributes that make up a VALUE OBJECT should form a conceptual whole. [2] For example,
+street, city, and postal code shouldn't be separate attributes of a Person object. They are part of a
+single, whole address, which makes a simpler Person, and a more coherent VALUE OBJECT
+
+    Take a look at this Example at 5.6.png
+
+Designing value objects
+
+If two people have the same name, that does not make them the same person, or make them
+interchangeable. But the object representing the name is interchangeable, because only the
+spelling of the name matters. A Name object can be copied from the first Person object to the
+second.
+
+In fact, the two Person objects might not need their own name instances. The same Name object
+could be shared between the two Person objects (each with a pointer to the same name instance)
+with no change in their behavior or identity. That is, their behavior will be correct until some
+change is made to the name of one person. Then the other person's name would change also! To
+protect against this, in order for an object to be shared safely, it must be immutable: it cannot be
+changed except by full replacement.
+
+Houses example:
+
+    Creating extra options for performance tuning can be important because VALUE OBJECTS tend to be
+    numerous. The example of the house design software hints at this. If each electrical outlet is a
+    separate VALUE OBJECT , there might be a hundred of them in a single version of a single house
+    plan. But if all outlets are considered interchangeable, we could share just one instance of an
+    outlet and point to it a hundred times (an example of FLYWEIGHT [Gamma et al. 1995]). In large
+    systems, this kind of effect can be multiplied by thousands, and such an optimization can make
+    the difference between a usable system and one that slows to a crawl, choked on millions of
+    redundant objects. This is just one example of an optimization trick that is not available for
+    ENTITIES
+
+For inmutability purposes, you can share or copy those objects. You may choose which implementation
+depending your arch. Copies for distributed systems and shared instances for non distributed instances
+
+
+    Designing Associations That Involve VALUE OBJECTS
+
+Most of the earlier discussion of associations applies to ENTITIES and VALUE OBJECTS alike. The fewer
+and simpler the associations in the model, the better.
+But, while bidirectional associations between ENTITIES may be hard to maintain, bidirectional
+associations between two VALUE OBJECTS just make no sense. Without identity, it is meaningless to
+say that an object points back to the same VALUE OBJECT that points to it. The most you could say
+is that it points to an object that is equal to the one pointing to it, but you would have to enforce
+that invariant somewhere. And although you could do so, and set up pointers going both ways, it
+is hard to think of examples where such an arrangement would be useful. Try to completely
+eliminate bidirectional associations between VALUE OBJECTS . If in the end such associations seem
+necessary in your model, rethink the decision to declare the object a VALUE OBJECT in the first
+place. Maybe it has an identity that hasn't been explicitly recognized yet.
+E NTITIES and VALUE OBJECTS are the main elements of conventional object models, but pragmatic
+designers have come to use one element, SERVICES .

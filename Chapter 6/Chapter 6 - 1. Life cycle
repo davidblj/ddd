@@ -1,0 +1,29 @@
+
+
+Life cycle
+
+Objects have longer lives, not all of which are spent in active memory. They have complex
+interdependencies with other objects. They go through changes of state to which invariants apply.
+Managing these objects presents challenges that can easily derail an attempt at MODEL-DRIVEN
+DESIGN .
+
+    life cycle 6.1
+
+The challenges fall into two categories.
+
+    1. Maintaining integrity throughout the life cycle
+    2. Preventing the model from getting swamped by the complexity of managing the life cycle
+
+This chapter will address these issues through three patterns. First, AGGREGATES tighten up the
+model itself by defining clear ownership and boundaries, avoiding a chaotic, tangled web of
+objects. This pattern is crucial to maintaining integrity in all phases of the life cycle.   
+
+Next, the focus turns to the beginning of the life cycle, using FACTORIES to create and reconstitute
+complex objects and AGGREGATES , keeping their internal structure encapsulated. Finally,
+REPOSITORIES address the middle and end of the life cycle, providing the means of finding andretrieving 
+persistent objects while encapsulating the immense infrastructure involved.
+
+AGGREGATES mark off the scope within which invariants have to be maintained at every stage of
+the life cycle. F ACTORIES and REPOSITORIES operate on AGGREGATES , encapsulating the complexity of
+specific life cycle transitions.
+

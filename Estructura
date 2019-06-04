@@ -1,0 +1,52 @@
+
+
+-> What the audience needs and whats to know. 
+
+-> Your presentation needs to be built around what your audience 
+   is going to get out of the presentation.
+
+-> if what you are planning to say doesn’t contribute to that core message, don’t say it.
+
+-> Smile and Make Eye Contact with your Audience
+
+Contain no more than 10 slides;
+Last no more than 20 minutes; and
+Use a font size of no less than 30 points
+
+
+1. Intro (2 mins)
+    
+    Mi proposito con la expo - check
+    Intro Ceiba - check 
+    Nombre de la expo - check   
+
+2. Que quice hacer (2 mins)
+
+    Introduccion del proyecto - check
+    Que quiero hacer (estructura y mantenibilidad) - check
+ 
+3. Como lo hice (4 mins)
+    
+    Scrum (como fue la implementacion) (1 min).
+    Arquitectura hexagonal (1 min, que es). y 
+    Domain driven design (1 min, que es).
+    Introduccion a las tecnologias (30 segundos).
+
+4. Por que los deberian usar (Los patrones y las tecnologias) (10 mins).
+
+    Por que es util trabajar con scrum (a detalle del scrum).
+    Para que son utiles los frameworks. (1 min)
+        Angular
+        Play
+    Programacion funcional (read why).
+    Por que utilizar la Arquitectura hexagonal (4 mins).
+    Por que utilizar Domain driven design (3 mins).
+
+Resumir rapidamente. 
+
+5. Cierre para el profesor (3 mins)
+
+    Que problemas tube (que le puedo recomendar a mi audiencia).
+    Que puedo concluir (que le puedo transmitir a mi audiencia).
+
+6. Algunas imagenes

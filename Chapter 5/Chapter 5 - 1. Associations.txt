@@ -1,0 +1,85 @@
+
+Introduction 
+
+
+Associations between objects are simple to conceive and to draw, but implementing them
+is a potential quagmire
+
+we'll focus on making distinctions among the three patterns of model elements that 
+express the model: ENTITIES , VALUE OBJECTS , and SERVICES.
+
+Value objects:
+
+Does an object represent something with continuity and identity—something that is tracked
+through different states or even across different implementations? Or is it an attribute that
+describes the state of something else? This is the basic distinction between an ENTITY and a VALUE
+OBJECT
+
+Services: 
+
+there are those aspects of the domain that are more clearly expressed as actions or
+operations, rather than as objects. Although it is a slight departure from object-oriented modeling
+tradition, it is often best to express these as SERVICES , rather than forcing responsibility for an
+operation onto some ENTITY or VALUE OBJECT . A SERVICE is something that is done for a client on
+request. In the technical layers of the software, there are many SERVICES . They emerge in the
+domain also, when some activity is modeled that corresponds to something the software must do,
+but does not correspond with state.
+
+In a MODEL-DRIVEN DESIGN , MODULES are part of the model, and they should reflect concepts in the domain.
+
+
+Associations
+
+
+The interaction between modeling and implementation is particularly tricky with the associations
+between objects. For every traversable association in the model, there is a mechanism in the software with the
+same properties.
+
+A model that shows an association between a customer and a sales representative corresponds to
+two things. On one hand, it abstracts a relationship developers deemed relevant between two real
+people. On the other hand, it corresponds to an object pointer between two Java objects, or an
+encapsulation of a database lookup, or some comparable implementation.
+
+There are at least three ways of making associations more tractable.
+
+    1. Imposing a traversal direction
+
+The United States has had many presidents, as have many other countries. This is a bidirectional,
+one-to-many relationship. Yet we seldom would start out with the name "George Washington" and
+ask, "Of which country was he president?" Pragmatically, we can reduce the relationship to a
+unidirectional association, traversable from country to president. This refinement actually reflects
+insight into the domain, as well as making a more practical design. It captures the understanding
+that one direction of the association is much more meaningful and important than the other. It
+keeps the "Person" class independent of the far less fundamental concept of "President."
+
+    Example at Figure  5.1
+
+
+    2. Adding a qualifier, effectively reducing multiplicity
+
+Very often, deeper understanding leads to a "qualified" relationship. Looking deeper into
+presidents, we realize that (except in a civil war, perhaps) a country has only one president at a
+time. This qualifier reduces the multiplicity to one-to-one, and explicitly embeds an important rule
+into the model. Who was president of the United States in 1790? George Washington.
+
+When the bidirectionality of a relationship is a semantic
+characteristic of the domain, when it's needed for application functionality, the retention of both
+traversal directions conveys that.
+
+But whatever the particular rules, as constraints on associations are discovered they should be
+included in the model and implementation.
+
+    Example at Figure  5.2
+
+At page 89. 
+
+
+    3. Eliminating nonessential associations
+
+The ultimate simplification is to eliminate an association altogether, if it is not essential
+to the job at hand or the fundamental meaning of the model objects.
+
+Carefully distilling and constraining the model's associations will take you a long way toward a
+MODEL-DRIVEN DESIGN.
+
+

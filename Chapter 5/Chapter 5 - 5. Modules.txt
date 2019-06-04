@@ -1,0 +1,102 @@
+
+
+Modules
+
+There are technical considerations, but cognitive overload is the primary 
+motivation for modularity. 
+
+MODULES give people two views of the model: They can look at detail within a MODULE 
+without being overwhelmed by the whole, or they can look at relationships between
+MODULES in views that exclude interior detail.
+
+Code gets broken down into all sorts of categories, from aspects of the technical architecture 
+to developers' work assignments, which should not.
+
+it isn't just code being divided into MODULES, but concepts. There is
+a limit to how many things a person can think about at once (hence low coupling).
+Incoherent fragments of ideas are as hard to understand as an undifferentiated soup of
+ideas (hence high cohesion).
+
+Whenever two model elements are separated into different modules, the relationships between
+them become less direct than they were, which increases the overhead of understanding their
+place in the design. Low coupling between MODULES minimizes this cost, and makes it possible to
+analyze the contents of one MODULE with a minimum of reference to others that interact.
+
+Packaging 
+
+->  well-chosen MODULES bring together elements of the model with particularly rich conceptual 
+    relationships. This high cohesion of objects with related responsibilities allows modeling and
+    design work to concentrate within a single MODULE , a scale of complexity a human mind can easily handle.
+
+->  MODULES and the smaller elements should coevolve, but typically they do not. M ODULES are chosen
+    to organize an early form of the objects. After that, the objects tend to change in ways that keep
+    them in the bounds of the existing MODULE definition. Letting the MODULES reflect changing understanding of
+    the domain will also allow more freedom for the objects within them to evolve. Refactoring modules are less
+    frecuent and more disruptive and we need to look for ways of minimizing the work of refactoring MODULES, as any
+    change mat disrupt the team communications and work (like version control conflicts).
+
+Modules are chapters
+
+Like everything else in a domain-driven design, MODULES are a communications mechanism. The
+meaning of the objects being partitioned needs to drive the choice of MODULES . When you place
+some classes together in a MODULE , you are telling the next developer who looks at your design to
+think about them together. If your model is telling a story, the MODULES are chapters. The name of the 
+MODULE conveys its meaning. These names enter the UBIQUITOUS LANGUAGE . "Now let's talk
+about the 'customer' module," you might say to a business expert, and the context is set for your
+conversation.
+
+Tip:
+
+    Choose MODULES that tell the story of the system and contain a cohesive set of concepts.
+    This often yields low coupling between MODULES , but if it doesn't, look for a way to
+    change the model to disentangle the concepts, or search for an overlooked concept that
+    might be the basis of a MODULE that would bring the elements together in a meaningful
+    way. Seek low coupling in the sense of concepts that can be understood and reasoned
+    about independently of each other. Refine the model until it partitions according to
+    highlevel domain concepts and the corresponding code is decoupled as well.
+    Give the MODULES names that become part of the UBIQUITOUS LANGUAGE . MODULES and
+    their names should reflect insight into the domain.
+
+Handling Trade offs
+
+Looking at conceptual relationships is not an alternative to technical measures. They are different
+levels of the same issue, and both have to be accomplished. But model-focused thinking produces
+a deeper solution, rather than an incidental one. And when there has to be a trade-off, it is best to
+go with the conceptual clarity, even if it means more references between MODULES or occasional
+ripple effects when changes are made to a MODULE.
+
+
+Frameworks and technical driven packages
+
+Elaborate technically driven packaging schemes impose two costs.
+
+    - If the framework's partitioning conventions pull apart the elements implementing the
+    conceptual objects, the code no longer reveals the model.
+    
+    - There is only so much partitioning a mind can stitch back together, and if the framework uses
+    it all up, the domain developers lose their ability to chunk the model into meaningful pieces.
+
+In short:
+
+It is best to keep things simple. Choose a minimum of technical partitioning rules that are essential
+to the technical environment or actually aid development. For example, decoupling complicated
+data persistence code from the behavioral aspects of the objects may make refactoring easier.    
+
+Unless there is a real intention to distribute code on different servers, keep all the code
+that implements a single conceptual object in the same MODULE , if not the same object.
+
+Paradigms
+
+Whatever the dominant model paradigm may be on a project, there are bound to be parts of the
+domain that would be much easier to express in some other paradigm. When there are just a few
+anomalous elements of a domain that otherwise works well in a paradigm, developers can live with
+a few awkward objects in an otherwise consistent model. (Or, on the other extreme, if the greater
+part of the problem domain is more naturally expressed in a particular other paradigm, it may
+make sense to switch paradigms altogether and choose a different implementation platform.) But
+when major parts of the domain seem to belong to different paradigms, it is intellectually
+appealing to model each part in a paradigm that fits, using a mixture of tool sets to support
+implementation. When the interdependence is small, a subsystem in the other paradigm can be
+encapsulated, such as a complex math calculation that simply needs to be called by an object.
+Other times the different aspects are more intertwined, such as when the interaction of the objects
+depends on some mathematical relationships.
+

@@ -1,0 +1,327 @@
+
+Diapositivas
+
+1
+    1. Nombre del proyecto.
+
+2
+    2. Descripcion, idea principal.
+    3. Cual fue mi verdadera intencion
+
+3
+    4. Scrum. 
+    5. Domain driven design, Hexagonal Arch, Tecnologias.
+
+4
+    6. Scrum                                  4  
+    7. PF, frameworks                         3  
+    8. Hexagonal <- meta (7pm), sin empezar   1
+    9. DDD                                    2      
+
+5. 
+
+    10. Conclusiones                          5  
+
+Discurso
+
+1. 
+
+    1.1
+
+    Hoy no solamente vengo a presentarles que fue lo que hice en mi practica academica,
+    sino que tambien quiero motivarlos aque ustedes aprendan e investiguen un poco 
+    las cosas que yo aprendi, por que estoy seguro que
+    van a encontrar la misma utilidad que yo les encuentro en aplicar 
+    esos conocimientos, que para mi son que casi que mandatorios en el 
+    desarrollo. (acercamiento del proyecto personal)
+
+    Para que haya un poco contexto: yo trabajo en Ceiba. 
+    Ceiba es una casa de desarrollo, y lo que hacen las casas de desarrollo es ofrecer 
+    soluciones tecnologicas a las empresas que necesiten automatizar procesos, 
+    resumidamente, Ceiba construye aplicativos construye sistemas, y se enfoca casi 
+    que netamente al desarrollo, o en lo que gira entorno al desarrollo. 
+
+    Cuando yo inicie las practicas, no tube la oportunidad de participar en un proyecto
+    , pero si tube la oportunidad de hacer mi propia propuesta. Y El proyecto que yo
+    queria realizar tenia dos propositos: el primero, automatizar algun proceso al interior
+    , es decir, construir un producto que utilizaran los empleados de Ceiba,
+    y el segundo, es que en el proceso yo pudiera aprender y mejorar mi habilidades
+    como desarrollador al enfrentarme a cosas nuevas y cosas que era desconocidas para
+    mi pero que yo consideraba importantes. 
+
+    (HABLAR QUE ES UN PROYECTO PERSONAL)
+    La aplicacion que yo desarrolle se llama Ceiba eventos, y el titulo de la practica
+    se llama
+    --- lea diapositiva ---
+
+1:30 - 1:40
+
+__________________________________________________________________________________________________
+
+2. 
+
+    2.1
+
+Cual es mi propuesta. 
+
+El problema que yo queria resolver es muy sencillo: cuando hay una celebracion
+especial (el dia del ingeniero, el dia de la mujer, el dia del trabajador, 
+, entre otras), el area de gestion organiza un evento.
+
+Independiente a la forma en la que se realice, el evento se caracteriza por
+que hay un obsequio, un regalo al empleado; entonces aqui suceden dos cosas:
+
+    O se realiza una integracion y se citan a todos los empleados.
+    O gestion humana va directamente al puesto de cada empleado y simplemente 
+      les da un regalito.
+
+Como Ceiba es una empresa de outsourcing, es comun que el desarrollador no este en las
+instalaciones de la empresa, si no que esten directamente en las instalaciones
+del cliente, lo que implica que el evento no se realiza solamente en 1 lugar, 
+si no que se realiza en varios. 
+
+ ---- HACER UN EJEMPLO ----
+Como es el proceso, hay una lista de asistencia que gestion humana tiene que llenar; 
+mientras se esta gestionando, hay una persona que anota a quien se le esta dando
+y que se le esta dando. 
+
+Este proceso es manual, y lo que yo quice hacer fue digitalizarlo, hacer una herramienta
+que no solamente simplificara el proceso, si no que tambien lo mejorara. Como ?:
+la aplicacion tiene que hacer dos cosas:
+
+    La primera es que tiene que suministrar la forma de administrar en
+       vivo la entrega del material.
+    La segunda es que una vez se haya terminado el evento, la aplicacion te permita generar
+       un reporte, y te diga el gasto monetario total, la cantidad total de participantes y
+       el material invertido.    
+
+    2.2
+
+Cual fue mi intencion: 
+
+Realmenete el negocio no es complejo, es muy facil de entender: la necesidad y la solucion
+es obvia. Sin embargo, por mas sencilla que sea una solucion, 
+
+    si los requisitos se levantan mal, 
+    si los detalles especificos de la implementacion se hacen mal, 
+    si el codigo no tiene una estructura, 
+    si el codigo es dificil de entender, 
+
+entonces dificilmente el producto que yo quiero entregar, se va a entregar bien.
+
+A lo que yo quise explorar, investigar y empezar la construccion de un software
+con patrones, con practicas que desde el inicio garanticen la calidad y que fueran
+distintas a lo tradicional, o a lo que aprendi en la U. 
+
+--- lea diapositiva --- 
+Es decir, yo queria entregar con calidad, y lo queria hacer haciendo del proceso de
+construccion un proceso transparente, y haciendo que el codigo fuente tenga una
+estructura, que sea de facil interpretacion.
+
+2:15 - 2:30
+
+__________________________________________________________________________________________________
+
+3. A modo de historia !.
+
+
+    3.1
+
+Hablemos desde las tecnologias que implemente hasta las metodologias de 
+construccion y de diseño. Primero les cuento de forma cronologica como hice
+el proyecto, y luego socializo los resultados, y por que personalmente es un
+acercamiento muy acertado para desarrollar un proyecto personal. 
+ 
+Para que la planeacion y elaboracion del proyecto sea transparente, que es mejor que 
+utilizar la metodologia que ya se viene utilizando hace algun tiempo en los equipos
+de desarrollo, que es Scrum, o al menos utilizar los herramientas que proporciona 
+el agilismo, por que son muy valiosas.
+
+Y entre las herramientas que para mi son vitales, son: las historias de usuario, la estimacion,
+y la prorizacion.
+
+Que fue lo que yo hice: me sente con el dueño del producto (que en ese entonces era Laura),  
+entendi la necesidad, construi las historias de usuario, levante los requisitos 
+de la aplicacion, las revise nuevamente con ella, es decir, las valide, me asegure que lo que yo
+pensaba hacer era lo que realmente se necesitaba, y en cuestion de dias ya tenia 
+el product backlog, y todo un roadmap sobre el cual yo podia trabajar.
+
+Una vez tenia en un mapa todas las funcionalidades, planie los sprints. Y en el primer
+Sprint, en el sprint 0, yo destine dos tareas, fundamentales,
+la primera y la mas importantes elegir que tipo 
+de arquitectura yo queria implementar, que patrones yo debia utilizar que
+mantubieran ese principio codigo limpio, y la segunda, 
+elegir el stack de las tecnologias con las que yo iba a trabajar.  
+
+1:00 - 1:20
+
+    3.2
+
+Tome la decision de utilizar la arquitectura hexagonal, 
+y el diseño dirigido por el dominio.
+
+Mientras que la primera nos proporciona ... 
+
+
+    Que es la arquitectura Hexagonal.
+
+Es un patron estructural y tiene 2 funcionalidades: 
+
+1. Nos ayuda a dicernir las partes internas y externas del sistema, 
+la parte interna son los casos de uso y el modelo del dominio, y lo externo es lo que
+comprende la persistencia, la mensajeria, los frameworks. Hace una separacion del dominio,
+ y los dispositivos de entrada y salida, es decir, desacopla la tecnologia de la implementacion.    
+ 
+La coneccion entre lo interno y lo externo se hace a traves de los puertos y adaptadores, 
+los puertos estan al interior, y los adaptadores al exterior ?!?!.  <- hablar de los puertos    
+
+2. Esta arquitectura promueve la separacion de responsabilidades al encapsular la logica en 
+diferentes partes de la aplicacion, y al final que proporciona, un nivel mayor de aislamiento
+y de control sobre la logica del negocio. Cada una de las capas, tiene una una conjunto 
+especifico de requisitos y responsabilidades. Y esto en efecto hace que existan unas fronteras
+que digan en que parte la logica o las funcionalidades, se deberian sentar. 
+
+Hablar sobre las capas ... ?!?!
+    
+    Que es el diseño dirigido por el dominio
+
+Como su nombre lo dice, es la forma de diseñar la logica del negocio. 
+
+1. El dominio identifica la arquitectura que el software necesita replicar, el dominio se
+plasma en el codigo. 
+
+2. Es una metodologia del desarrollo del software que conecta la implementacion a
+los conceptos claves del dominio, mapea las terminos a traves de un lenguaje obicuo.
+
+3. No es una tecnologia, es un conjunto de terminos, practicas y principios
+que permiten tomar desiciones de diseño en proyectos que tienen dominios complejos.
+
+Hablar sobre los contextos delimitados y los dos tipos de diseño, estrategico y ... ?!?!?
+
+1:50 - 2:00
+
+Ya en cuanto a las tecnologias y los frameworks:
+
+Como la aplicacion requiere versatilidad, entonces necesitaba que la aplicacion fuera movil. 
+A lo que hice una aplicacion web, si es una aplicacion web, entonces hay un front end y un
+backend. 
+
+Como es una aplicacion web, necesitaba un framework de JavaScript. De los 3 grandes frameworks 
+que hay que son React, Angular y VueJ, escogi Angular.
+
+En el backend, siempre me llamo mucho la programacion funcional, entonces tome la decision de 
+utilizar un lenguaje que fuera funcional, pero que tampoco fuera tan ajeno a lo que ya sabia, 
+y escogi utilizar Scala; Scala es un lenguaje que combina lo funcional, y lo no funcional.    
+
+La tecnologia mas utilizada para exponer servicios en Scala, es Play. Play framework es a Scala,
+como lo es Spring a java.
+
+Mas que decirles a ustedes que tecnologias estoy utilizando, quiero, desde mi experiencia, 
+comentarles cuales son las ventajas de utilizar estos frameworks, y esos patrones, que es
+lo que realmente nos deja. 
+
+0:40 - 1:00 
+
+TOTAL: 3:20 
+__________________________________________________________________________________________________
+
+4.
+
+Discurso introductorio. 
+
+    4.1
+
+Mostrar el kanvan (done)
+
+    4.3 hexagonal
+
+Las capas:
+
+  El dominio es la capa central, contiene la logica y las restricciones del negocio.
+  Y es forma totalmente independiente a la tecnologia que se esta 
+  utilizando.
+
+  La aplicacion se sienta entre el dominio y la infraestructura, y es la que
+  se encarga de hacer la comunicacion entre estas dos capas. El traduce
+  lo que viene de la infraestructura al dominio, y lo que viene del dominio
+  a la infraestructura. Ahora, la aplicacion es importante, por que en ella
+  estan los casos de uso, los casos de uso son las acciones que puede utilizar
+  la aplicacion, el orquestador.  
+    
+  La infraestructura es la que se encarga de manejar la comunicacion
+  con el mundo exterior y de definir las implementaciones de las interfaces
+  que esten en la capa del dominio.
+
+  La comunicacion entre las capas, es en cascada, la infraestructura se comunica
+  con la aplicacion, y la aplicacion con el dominio. El dominio no tiene saber
+  de la aplicacion, y la aplicacion no tiene por que saber de la infraestructura.  
+
+  A la arquitectura hexagonal se le puede encontrar tambien como el patron de los
+  puertos y los adaptadores .... ?!?! 
+
+Los beneficios
+
+La aplicacion se vuelve agnostica al mundo externo
+
+    El nucleo de la logica del negocio puede ser utilizado por cualquier
+    actor, por interfaz de linea de comandos, por otra aplicacion o sistema,
+    un script, y cualquier otra cosa
+
+Independiente a los servicios externos
+
+    Cuando la aplicacion es agnostica al mundo externo, entonces tambien es
+    independiente a los servicios externos. Es decir, yo puedo iniciar el 
+    desarrollo del negocio, mucho antes de saber que tecnologias quiero
+    implementar. Por ejemplo, si el acceso a la persistencia yo lo hago con 
+    puertos y adaptadores, entonces yo puedo iniciar el desarrollo del 
+    dominio, sin tener la necesidad de tener ya definida la tecnologia 
+    de persistencia. 
+
+    (dar ejemplo)
+
+Facil de testiar en aislamiento
+
+    Como la aplicacion es agnostica al mundo externo, entonces las pruebas son 
+    mucho mas faciles de implementar, por que las capas se puede testiar en 
+    aislamiento, mockiando cualquier dependencia. No solamente hace que las
+    pruebas unitarias puedan ser mas rapidas, si no que descopla el codigo de los
+    detalles de la implementacion. 
+
+    (dar ejemplo)
+
+El codigo es flexible
+
+    El codigo es flexible por que cambiar entre las teconologias es facil. 
+    Para el mismo puerto, podemos tener multiples adaptadores, cada uno utilizando
+    una teconologia distinto. Escoger que adaptador utilizar para un puerto
+    es tan sencillo como cambiar la configuracion del sistema, el dominio no 
+    tiene por que cambiar, el dominio se cierra a la modificacion, inclusive si
+    cambiamos de tecnologia. 
+
+Aumenta la mantenbilidad y decrementa la deuda tecnica. 
+
+    Por definicion, el sistema tiene mayor grado de mantenbilidad, por que
+    un cambio en un area de la aplicacion, realmente no afecta las demas, 
+    agregar caracteristicas nuevas al sistema, relamente no requiere de
+    una refactorizacion muy grande. 
+    Como la mantenibilidad se relaciona con la deuda tecnica, entre mayor 
+    mantenibilidad haya, menor sera la deuda tecnica, por lo tanto, 
+    la arquitectura hexagonal reduce la deuda tecnica. 
+
+La aplicacion es inmune a la evolucion de las tecnologias 
+
+    Como las tecnologias se desarrollan de una forma mas frecuente que la logica
+    del negocio, actualizar el sistema es tan sencillo como cambiar el adaptador, 
+    y la aplicacion permanece inmutable.
+
+    4.4
+
+DDD
+
+Cuando se logra aislar el negocio de la tecnologias, ya podemos iniciar con la codificacion del 
+Dominio. 
+
+Con DDD, diseño estrategico y diseño estructural. 
+
+
+__________________________________________________________________________________________________

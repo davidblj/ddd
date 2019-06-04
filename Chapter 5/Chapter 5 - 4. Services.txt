@@ -1,0 +1,84 @@
+
+
+Services
+
+In some cases, the clearest and most pragmatic design includes operations that do not
+conceptually belong to any object. Rather than force the issue, we can follow the natural contours
+of the problem space and include SERVICES explicitly in the model.
+
+    "Some concepts from the domain aren't natural to model as objects. Forcing the
+     required domain functionality to be the responsibility of an ENTITY or VALUE either
+     distorts the definition of a model-based object or adds meaningless artificial objects."
+
+A SERVICE is an operation offered as an interface that stands alone in the model, without
+encapsulating state, as ENTITIES and VALUE OBJECTS do. SERVICES are a common pattern in technical
+frameworks, but they can also apply in the domain layer
+
+A SERVICE tends to be named for an activity, rather than an entity—a verb rather than a noun.
+A SERVICE can still have an abstract, intentional definition; it just has a different flavor 
+than the definition of an object.
+
+A SERVICES should be used judiciously and not allowed to strip the ENTITIES and VALUE OBJECTS of all
+their behavior. But when an operation is actually an important domain concept, a SERVICE forms a
+natural part of a MODEL-DRIVEN DESIGN.
+
+A good service has the following characteristics:
+    
+    - The operation relates to a domain concept that is not a natural part of an ENTITY or VALUE
+      OBJECT.
+    - The interface is defined in terms of other elements of the domain model.
+    - The operation is stateless.
+
+Statelessness here means that any client can use any instance of a particular SERVICE without
+regard to the instance's individual history. The execution of a SERVICE will use information that is
+accessible globally, and may even change that global information (that is, it may have side
+effects). But the SERVICE does not hold state of its own that affects its own behavior, as most
+domain objects do.
+
+Most SERVICES discussed in the literature are purely technical
+and belong in the infrastructure layer
+
+In short:
+    Technical SERVICES should lack any business meaning at all.
+    Domain and application SERVICES collaborate with these infrastructure SERVICES.
+
+For example, a bank might have an application that sends an e-mail to a customer when an
+account balance falls below a specific threshold.
+
+    - The interface that encapsulates the e-mail system, and perhaps alternate
+    means of notification, is a SERVICE in the infrastructure layer.
+
+    - The application layer is aresponsible for ordering the notification. The domain
+      layer is responsible for determining if a threshold was met — though this task
+      probably does not call for a SERVICE
+
+    - Domain objects should not be linked to external resources. Services should
+
+Many domain or application SERVICES are built on top of the populations of ENTITIES
+and VALUES, behaving like scripts that organize the potential of the domain to
+actually get something done.
+
+You might use one or the other depending on the type of operation. If it does not
+involve any domain logic, it should be an app service, if it does, it should be
+a domain service.
+
+Study Case
+
+Application Funds Transfer App Service
+
+    Digests input (such as an XML request).
+    Sends message to domain service for fulfillment.
+    Listens for confirmation.
+    Decides to send notification using infrastructure service.
+
+Domain Funds Transfer Domain Service
+
+    Interacts with necessary Account and Ledger objects, making appropriate debits and credits.
+    Supplies confirmation of result (transfer allowed or not, and so on).
+
+Infrastructure Send Notification Service
+
+    Sends e-mails, letters, and other communications as directed by the application.
+
+You could provide an access to mechanisms that is either drawn by your framework, or just design patterns.
+

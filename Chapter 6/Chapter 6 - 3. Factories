@@ -1,0 +1,25 @@
+
+Factories
+
+When creation of an object, or an entire AGGREGATE , becomes complicated or reveals too much of
+the internal structure, FACTORIES provide encapsulation.
+
+Much of the power of objects rests in the intricate configuration of their internals and their
+associations. An object should be distilled until nothing remains that does not relate to its meaning
+or support its role in interactions. This mid-life cycle responsibility is plenty. Problems arise from
+overloading a complex object with responsibility for its own creation.
+
+An association in real life to aggregates and factories
+
+    "A car engine is an intricate piece of machinery, with dozens of parts collaborating to perform the
+    engine's responsibility: to turn a shaft. One could imagine trying to design an engine block that
+    could grab on to a set of pistons and insert them into its cylinders, spark plugs that would find
+    their sockets and screw themselves in. But it seems unlikely that such a complicated machine
+    would be as reliable or as efficient as our typical engines are. Instead, we accept that something
+    else will assemble the pieces. Because cars are never assembled and driven at the same time, there is
+    no value in combining both of these functions into the same mechanism."
+
+Assembling a complex compound object is a job that is best separated from whatever job that object will have
+to do when it is finished.
+
+Clients should not be responsible
