@@ -1,4 +1,4 @@
-
+m
 Diapositivas
 
 1
@@ -127,8 +127,8 @@ ________________________________________________________________________________
 
     3.1
 
-Hablemos desde las tecnologias que implemente hasta las metodologias de 
-construccion y de diseño. Primero les cuento de forma cronologica como hice
+- Hablemos desde las tecnologias que implemente hasta las metodologias de 
+construccion y de diseño -. Primero les cuento de forma cronologica como hice
 el proyecto, y luego socializo los resultados, y por que personalmente es un
 acercamiento muy acertado para desarrollar un proyecto personal. 
  
@@ -157,11 +157,50 @@ elegir el stack de las tecnologias con las que yo iba a trabajar.
 
     3.2
 
+Mostrar el kanvan (done)
+
+Yo les quiero mostrar la herramienta con la que aplique 
+Scrum, el Canvan. 
+
+Trello Es una herramienta de uso gratuito, y lo pueden utilizar equipos de 
+trabajo, o de forma personal. Este es el canvan que yo implemente
+
+En el canvan hay 3 elementos importantes; 
+ 
+    El backlog, el Sprint backlog, lo que estoy haciendo, lo que ya hice, 
+    la documentacion (como voy a realizar la estimacion, como es el sistema
+    de puntaje, y las especificaciones del proyecto que no son mas 
+    que documentos referentes a las tecnologias, los patrones y la arquitectura) y
+    unas herramientas de soporte, por ejemplo, una seccion que yo la utilizaba para
+    refinar ideas, o una seccion para las tareas adicionales y pendientes por hacer.     
+
+Por que fue importante: 
+
+    Primero, por que organiza prioridades, segundo hace que el trabajo sea visible,    
+    tanto para los asesores internos, como para los asesores externos, y tambien,
+    porque visualmente es un apoyo que te proporciona una retroalimentacion para saber que
+    es lo que se tiene que hacer mas adelante y que decisiones se tienen que tomar respecto 
+    al trabajo restante para cumpliar con las metas y los objetivos
+
+Las estadisticas: 
+
+    Al final fueron 12 historias de usuario, 6 sprints de 2 semanas, un desarrollo
+    equivalente a 3 meses. Hay una curva de aprendizaje, yo no empeze inmediatemente
+    a desarrollar, yo tube una capacitacion en Ceiba, que duro alrededor del
+    meses; en Angular, Scala y Play Framework.      
+
+
+    3.3
+
+El desarrollo final:
+
+Explicar las diapositivas. +
+
+
+    3.4
+
 Tome la decision de utilizar la arquitectura hexagonal, 
 y el diseño dirigido por el dominio.
-
-Mientras que la primera nos proporciona ... 
-
 
     Que es la arquitectura Hexagonal.
 
@@ -218,7 +257,7 @@ como lo es Spring a java.
 
 Mas que decirles a ustedes que tecnologias estoy utilizando, quiero, desde mi experiencia, 
 comentarles cuales son las ventajas de utilizar estos frameworks, y esos patrones, que es
-lo que realmente nos deja. 
+lo que realmente nos deja !?!?!?!?
 
 0:40 - 1:00 
 
@@ -229,11 +268,7 @@ ________________________________________________________________________________
 
 Discurso introductorio. 
 
-    4.1
-
-Mostrar el kanvan (done)
-
-    4.3 hexagonal
+    4.1 hexagonal
 
 Las capas:
 
@@ -321,7 +356,38 @@ DDD
 Cuando se logra aislar el negocio de la tecnologias, ya podemos iniciar con la codificacion del 
 Dominio. 
 
-Con DDD, diseño estrategico y diseño estructural. 
+Digamos que a grandes rasgos, DDD tiene dos componentes, el diseño estrategico y el diseño estructural. 
+El diseño estructural son los patrones que nos ayudan a producir los artefactos de codigo, y el diseño estrategico
+son las practicas que hacer el equipo, para diseñar el dominio. 
+
+Sobre los contextos delimitados y el lenguaje obicuo. 
+
+En el diseño estructural hay 6 elementos principales
+
+    los servicios
+    las entidades
+    objetos de valor
+    agregados
+    repositorios
+
+
+Ventajas:
+
+Simplifica el desarrollo
+
+    Al final terminas con codigo que es mas entendible.
+
+    Simplifica el desarrollo, por que estamos conectando la implementacion y el modelo del negocio a traves de
+    a traves de principios. 
+
+Hablar sobre 
+
+Las ventajas de los contextos delimitados y el lenguaje obicuo
+
+Hablar sobre las diciplinas 
+
+
+    4.4
 
 
 __________________________________________________________________________________________________
