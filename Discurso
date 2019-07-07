@@ -194,7 +194,7 @@ Las estadisticas:
 
 El desarrollo final:
 
-Explicar las diapositivas. +
+Explicar las imagenes. 
 
 
     3.4
@@ -209,18 +209,13 @@ Es un patron estructural y tiene 2 funcionalidades:
 1. Nos ayuda a dicernir las partes internas y externas del sistema, 
 la parte interna son los casos de uso y el modelo del dominio, y lo externo es lo que
 comprende la persistencia, la mensajeria, los frameworks. Hace una separacion del dominio,
- y los dispositivos de entrada y salida, es decir, desacopla la tecnologia de la implementacion.    
- 
-La coneccion entre lo interno y lo externo se hace a traves de los puertos y adaptadores, 
-los puertos estan al interior, y los adaptadores al exterior ?!?!.  <- hablar de los puertos    
+ y los dispositivos de entrada y salida, es decir, desacopla la tecnologia de la implementacion.        
 
 2. Esta arquitectura promueve la separacion de responsabilidades al encapsular la logica en 
 diferentes partes de la aplicacion, y al final que proporciona, un nivel mayor de aislamiento
 y de control sobre la logica del negocio. Cada una de las capas, tiene una una conjunto 
 especifico de requisitos y responsabilidades. Y esto en efecto hace que existan unas fronteras
-que digan en que parte la logica o las funcionalidades, se deberian sentar. 
-
-Hablar sobre las capas ... ?!?!
+que digan en que parte la logica o las funcionalidades deberian sentar. 
     
     Que es el diseño dirigido por el dominio
 
@@ -273,39 +268,49 @@ Discurso introductorio.
 Las capas:
 
   El dominio es la capa central, contiene la logica y las restricciones del negocio.
-  Y es forma totalmente independiente a la tecnologia que se esta 
+  Es totalmente independiente a la tecnologia que se esta 
   utilizando.
 
   La aplicacion se sienta entre el dominio y la infraestructura, y es la que
   se encarga de hacer la comunicacion entre estas dos capas. El traduce
   lo que viene de la infraestructura al dominio, y lo que viene del dominio
-  a la infraestructura. Ahora, la aplicacion es importante, por que en ella
-  estan los casos de uso, los casos de uso son las acciones que puede utilizar
-  la aplicacion, el orquestador.  
+  a la infraestructura.  
     
   La infraestructura es la que se encarga de manejar la comunicacion
   con el mundo exterior y de definir las implementaciones de las interfaces
   que esten en la capa del dominio.
 
-  La comunicacion entre las capas, es en cascada, la infraestructura se comunica
-  con la aplicacion, y la aplicacion con el dominio. El dominio no tiene saber
-  de la aplicacion, y la aplicacion no tiene por que saber de la infraestructura.  
+  Notas:
 
-  A la arquitectura hexagonal se le puede encontrar tambien como el patron de los
-  puertos y los adaptadores .... ?!?! 
+    -> La comunicacion entre las capas, es en cascada, la infraestructura se comunica
+    con la aplicacion, y la aplicacion con el dominio. El dominio no tiene saber
+    de la aplicacion, y la aplicacion no tiene por que saber de la infraestructura.  
+
+  Por que las capas ?: las capas son la solucion a la filosofia que en ella se plantea:
+  En la arquitectura hexagonal se habla de los puertos y los adaptadores. Un puerto es una
+  necesidad que tiene el dominio, o algo ajeno al mundo externo. Un adaptador es un artefacto
+  de codigo que implementa solucion al problema. Cuando la necesidad la tiene el dominio, el
+  puerto es una interface y el adaptador es una implementacion, cuando la necesidad la tiene 
+  un agente externo, el puerto es la necesidad como tal, yel adaptador es sencillamente el
+  mecanismo que se encarga de procesar esa peticion del mundo externo. (dar ejemplo, con la
+  agregar evento, y con las peticiones http).
+
+  -> Ahora, la aplicacion es importante, por que en ella
+  estan los casos de uso, los casos de uso son las acciones que puede utilizar
+  la aplicacion, el orquestador. 
 
 Los beneficios
 
-La aplicacion se vuelve agnostica al mundo externo
+La aplicacion se vuelve agnostica al mundo externo ???
 
-    El nucleo de la logica del negocio puede ser utilizado por cualquier
+    -> El nucleo de la logica del negocio puede ser utilizado por cualquier
     actor, por interfaz de linea de comandos, por otra aplicacion o sistema,
     un script, y cualquier otra cosa
 
-Independiente a los servicios externos
-
-    Cuando la aplicacion es agnostica al mundo externo, entonces tambien es
-    independiente a los servicios externos. Es decir, yo puedo iniciar el 
+    -> Cuando la aplicacion es agnostica al mundo externo, entonces tambien es
+    independiente a los servicios externos. 
+    
+    Yo puedo iniciar el 
     desarrollo del negocio, mucho antes de saber que tecnologias quiero
     implementar. Por ejemplo, si el acceso a la persistencia yo lo hago con 
     puertos y adaptadores, entonces yo puedo iniciar el desarrollo del 
@@ -317,10 +322,9 @@ Independiente a los servicios externos
 Facil de testiar en aislamiento
 
     Como la aplicacion es agnostica al mundo externo, entonces las pruebas son 
-    mucho mas faciles de implementar, por que las capas se puede testiar en 
-    aislamiento, mockiando cualquier dependencia. No solamente hace que las
-    pruebas unitarias puedan ser mas rapidas, si no que descopla el codigo de los
-    detalles de la implementacion. 
+    mucho mas faciles de implementar, por que las capas se pueden testiar en 
+    aislamiento. En el dominio cualquier dependencia yo la puedo mockiar. En el 
+    dominio solamente hago las pruebas unitarias.     
 
     (dar ejemplo)
 
@@ -337,8 +341,9 @@ Aumenta la mantenbilidad y decrementa la deuda tecnica.
 
     Por definicion, el sistema tiene mayor grado de mantenbilidad, por que
     un cambio en un area de la aplicacion, realmente no afecta las demas, 
-    agregar caracteristicas nuevas al sistema, relamente no requiere de
+    agregar caracteristicas nuevas al sistema,  no se necesita de
     una refactorizacion muy grande. 
+
     Como la mantenibilidad se relaciona con la deuda tecnica, entre mayor 
     mantenibilidad haya, menor sera la deuda tecnica, por lo tanto, 
     la arquitectura hexagonal reduce la deuda tecnica. 
@@ -358,18 +363,79 @@ Dominio.
 
 Digamos que a grandes rasgos, DDD tiene dos componentes, el diseño estrategico y el diseño estructural. 
 El diseño estructural son los patrones que nos ayudan a producir los artefactos de codigo, y el diseño estrategico
-son las practicas que hacer el equipo, para diseñar el dominio. 
+son las practicas que implementa el equipo, para diseñar el dominio. 
 
 Sobre los contextos delimitados y el lenguaje obicuo. 
 
-En el diseño estructural hay 6 elementos principales
+En el diseño estructural hay 6 elementos principales     
 
-    los servicios
-    las entidades
-    objetos de valor
-    agregados
-    repositorios
+    En el diseño dirigido por el dominio, la forma en las que se modelan los objetos 
+    del dominio, es muy importante. Existen dos tipos, las entidades y los objetos de valor    
 
+    las entidades: son objetos que tienen una identidad conceptual, un objeto tiene identidad 
+    conceptual cuando sigue siendo la misma cosa sin importar que sus atributos cambien con
+    el tiempo. Ellos tienen una linea de continuidad (evento)
+
+    objetos de valor: son objetos que no tienen identidad conceptual, Los objetos agrupan atributos 
+    que conforman un conjunto conceptual; describen las caracteristicas de
+    un objeto. Los obejtos de valor son objetos que se crean, y se descartan facilmente.  
+    
+    Existen varias ventajas; 
+
+            categorizar los objetos semanticamente de esta forma, simplifica modelar el dominio. 
+    
+    las entidades estan compuestas por los objetos de valor, y los objetos de valor, 
+    simplifican las entidades, son objetos inmutables. 
+
+    Las entidades se modelan de una forma en especial, tienen unos mecanismos mas 
+    complejos que permiten manejar un estado, una entidad tiene ciclos de vida, y por lo
+    tanto tiene que ir acompañada de las funcionalidades que mantienen ese ciclo de vida.
+
+    Hay otra cosa que se llaman las agregados. Los objetos de la aplicacion constantemente
+    tiene referencias, se referencian el uno al otro, sin ser conceptualmente el mismo objeto.
+    Un agregado lo que hacer es definir una frontera (dar un ejemplo).
+    
+    Los agregados se crean principalmente por dos cosas: 
+
+        Las entidades realmente no representan los conceptos del dominio, los 
+        conceptos del dominio se representan generalmente por un conglomerado de entidades y
+        objetos de valor (dar un ejemplo). 
+
+        La frontera consiste en dos cosas. En las invariantes, que son reglas de negocio. Cada
+        vez que yo haga cualquier operacion sobre el agregado, se tienen que cumplir las reglas
+        o las restricciones, que defina el negocio. 
+        
+        Y en las transacciones.  Yo solamente puedo efectuar transacciones sobre los agregados,
+        yo no persisto directamente sobre las entidades, si no en el conglomerado. 
+
+        De esta forma garantizamos la consistencia entre los datos
+
+        (dar ejemplo, participante repetido, guardar evento, eliminar evento).  
+
+    Quien efectua las transacciones, los repositorios. Existe al menos un repositorio, por agregado. 
+    El repositorio se responsabilisa por definir toda la logica que se relaciona al acceso a bases 
+    de datos, 
+
+    Cual es la ventaja, el codigo del dominio se mantiene fiel al negocio, por que se escondio toda la 
+    complejidad que tiene la persistencia a traves de una interfaz que es simple de consumir. Y es de esta 
+    misma forma que tambien se garantiza la consistencia, el cliente no tiene por que modificar una entidad
+    ,en aislamiento a traves, de un query, por que facilmente se pueden violar las reglas del negocio. 
+    
+    Donde esta el negocio ? en los servicios
+
+    Los servicios son operaciones del dominio que conceptualmente
+    no pertenecen a ningun objeto, son actividades y acciones que de agregarsen a
+    las entidades o los objetos de valor, ensucian su verdadera intencion, su rol. El negocio, la logica,
+    esta en los servicios. Los servicios se expresan a traves de clases, 1 servicio por clase. Las clases 
+    son acciones, y solamente tienen una responsabilidad, la de cumplir lo que dice el nombre de la clase.  
+
+    Finalmente estan las factorias.
+
+    Que pasa tambien con los agregados ?, los agregados pueden ser modelos muy complejos, y reconstituir o 
+    crear un objeto que sea tan complejo, no es la funcionalidad principal de un servicio. Esta logica es 
+    necesaria moverla a un lugar distinto, pero que de igual forma siga estando en el dominio. Las factorias 
+    se encargan de crear los agregado, encapsulan esa logica y a su vez aplicar las invariantes.     
+    
 
 Ventajas:
 
@@ -378,16 +444,14 @@ Simplifica el desarrollo
     Al final terminas con codigo que es mas entendible.
 
     Simplifica el desarrollo, por que estamos conectando la implementacion y el modelo del negocio a traves de
-    a traves de principios. 
+    de principios. 
 
 Hablar sobre 
 
-Las ventajas de los contextos delimitados y el lenguaje obicuo
-
-Hablar sobre las diciplinas 
-
-
-    4.4
-
-
+Las ventajas de los contextos delimitados y el lenguaje obicuo ?
+Hablar sobre las diciplinas ?
+    
 __________________________________________________________________________________________________
+
+
+4.4

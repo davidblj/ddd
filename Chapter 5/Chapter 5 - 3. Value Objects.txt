@@ -29,7 +29,7 @@ Value objects characteristics:
      - VALUE OBJECTS can reference ENTITIES
      - VALUE OBJECTS are used as attributes of ENTITIES (And other values):     
      - VALUE OBJECTS are often passed as parameters in messages between objects. They are frequently
-       transient, created for an operation and then discarded.0
+       transient, created for an operation and then discarded.
 
 When you care only about the attributes of an element of the model, classify it as a VALUE OBJECT.
 Make it express the meaning of the attributes it conveys and give it related functionality.
